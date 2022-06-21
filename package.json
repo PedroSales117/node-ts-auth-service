@@ -1,0 +1,19 @@
+{
+  "name": "ts-auth-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PedroSales117/ts-auth-service.git"
+  },
+  "author": "Pedro Sales",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PedroSales117/ts-auth-service/issues"
+  },
+  "homepage": "https://github.com/PedroSales117/ts-auth-service#readme"
+}
