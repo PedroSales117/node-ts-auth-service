@@ -5,7 +5,6 @@
     },
     "rules": {
         "@typescript-eslint/strict-boolean-expressions": "off",
-        "@typescript-eslint/method-signature-style": "off",
-        "@typescript-eslint/restrict-template-expressions": "off"
+        "@typescript-eslint/method-signature-style": "off"
     }
 }
