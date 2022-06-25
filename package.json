@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "jwt-test": "node --loader ts-node/esm ./src/presentation/middleware/jwt-auth.ts"
+    "jwt-test": "node --loader ts-node/esm ./src/presentation/middleware/jwt-auth.ts",
+    "dev":"node --loader ts-node/esm ./src/index.ts"
   },
   "repository": {
     "type": "git",
