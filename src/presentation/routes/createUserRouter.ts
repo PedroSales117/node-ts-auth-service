@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import { router } from '../config/express.config'
-import { Authenticator } from '../middleware/generateAuthToken'
+import { Authenticator } from '../middleware/Authenticator'
 import { UserMakeController } from '../controllers/userController'
 
 export const CreateUserRouter = router
