@@ -1,5 +1,5 @@
-import { DataBase } from '../database/connect'
 import { user } from '../protocols/user'
+import { DataBase } from '../database/connect'
 import { DB_STRING_CONNECTION } from '../config/index'
 
 export class UserMakeController {
@@ -13,7 +13,7 @@ export class UserMakeController {
     }
   }
 
-  async findUser (method: string): Promise<any> {
+  async findUser (method: string | any): Promise<any> {
     try {
       const findUserResponse = new DataBase().findUserByEmail(DB_STRING_CONNECTION, method)
       return await findUserResponse

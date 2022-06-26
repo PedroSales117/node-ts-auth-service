@@ -6,8 +6,15 @@ import { UserMakeController } from '../controllers/userController'
 export const CreateUserRouter = router
 
 CreateUserRouter.post('/create', (request: Request, response: Response) => {
-  const { email, pass } = request.body
-  const requiredFields = ['email', 'pass']
+  const { email, pass, phone, address, gender, birthday } = request.body
+  const requiredFields = [
+    'email',
+    'pass',
+    'phone',
+    'address',
+    'gender',
+    'birthday'
+  ]
   for (const field of requiredFields) {
     if (!request.body[field]) {
       return response.status(400).json({
@@ -22,11 +29,23 @@ CreateUserRouter.post('/create', (request: Request, response: Response) => {
       })
     } else {
       const encodedPass = new Authenticator().encode(pass)
-      void new UserMakeController().createUser({ email: email, pass: encodedPass })
+      void new UserMakeController().createUser({
+        email: email,
+        pass: encodedPass,
+        phone: phone,
+        address: address,
+        gender: gender,
+        birthday: birthday
+      })
         .then(async dataBaseResponse => {
           try {
+            if (dataBaseResponse === {}) {
+              return response.status(500).json({
+                ServerError: 'Error creating user, try again later.'
+              })
+            }
             return response.status(200).json({
-              idCreated: await dataBaseResponse
+              data: 'User sucessful created'
             })
           } catch (error) {
             console.log(error)
