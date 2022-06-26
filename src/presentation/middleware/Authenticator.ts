@@ -4,7 +4,7 @@ import { JWT_SECRET } from '../config/index'
 export class Authenticator {
   encode (toEncode: any): any {
     try {
-      const authToken = jwt.sign({ exp: 3000, data: toEncode }, JWT_SECRET)
+      const authToken = jwt.sign({ data: toEncode }, JWT_SECRET)
       return authToken
     } catch (error) {
       return error
