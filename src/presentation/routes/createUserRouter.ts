@@ -6,14 +6,15 @@ import { UserMakeController } from '../controllers/userController'
 export const CreateUserRouter = router
 
 CreateUserRouter.post('/create', (request: Request, response: Response) => {
-  const { email, pass, phone, address, gender, birthday } = request.body
+  const { email, pass, phone, address, gender, birthday, passconfirmation } = request.body
   const requiredFields = [
     'email',
     'pass',
     'phone',
     'address',
     'gender',
-    'birthday'
+    'birthday',
+    'passconfirmation'
   ]
   for (const field of requiredFields) {
     if (!request.body[field]) {
@@ -22,12 +23,16 @@ CreateUserRouter.post('/create', (request: Request, response: Response) => {
       })
     }
   }
-  void new UserMakeController().findUser(email).then(userFind => {
-    if (userFind?.email === email) {
-      return response.status(400).json({
-        error: 'E-mail already in use'
-      })
-    } else {
+  if (pass !== passconfirmation) {
+    return response.status(400).json({ error: 'password does not match password confirmation' })
+  }
+  void new UserMakeController().findUser(email)
+    .then(userFind => {
+      if (userFind?.email === email) {
+        return response.status(400).json({
+          error: 'E-mail already in use'
+        })
+      }
       const encodedPass = new Authenticator().encode(pass)
       void new UserMakeController().createUser({
         email: email,
@@ -56,6 +61,5 @@ CreateUserRouter.post('/create', (request: Request, response: Response) => {
             error: error
           })
         })
-    }
-  })
+    })
 })
