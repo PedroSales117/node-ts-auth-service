@@ -6,4 +6,5 @@ export interface user {
   address: string
   gender: string
   birthday: string
+  passwordConfirmation: string
 }

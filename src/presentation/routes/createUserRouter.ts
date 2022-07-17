@@ -40,7 +40,8 @@ CreateUserRouter.post('/create', (request: Request, response: Response) => {
         phone: phone,
         address: address,
         gender: gender,
-        birthday: birthday
+        birthday: birthday,
+        passwordConfirmation: passconfirmation
       })
         .then(async dataBaseResponse => {
           try {
